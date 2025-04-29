@@ -2120,30 +2120,32 @@ void displayMainMenuScreen() {
 }
 
 void displayLoginScreen() {
+    string username = "";
+string password = "";
+short currenUserPosition = 0;
+string errorMessage = "";
+
+while (true) {
     system("cls");
 
     cout << "---------------------------------\n";
     cout << "          Login Screen\n";
     cout << "---------------------------------\n";
+    cout << errorMessage;
 
-    string username = "";
-    string password = "";
-    short currenUserPosition = 0;
+    username = readWord("Enter username:\n");
+    password = readWord("Enter password:\n");
 
-    while (true) {
-        username = readWord("Enter username:\n");
-        password = readWord("Enter password:\n");
+    currenUserPosition = getUserPosition(username, password);
 
-        currenUserPosition = getUserPosition(username, password);
+    if (currenUserPosition != -1) {
+        activeUser = vUsers.at(currenUserPosition);
+        break;
+    } else
+        errorMessage = "Invalid username/password\n\n";
+}
 
-        if (currenUserPosition != -1) {
-            activeUser = vUsers.at(currenUserPosition);
-            break;
-        } else
-            cout << "Invalid username/password\n\n";
-    }
-    
-    displayMainMenuScreen();
+displayMainMenuScreen();
 }
 
 void loadDataFromFiles() {

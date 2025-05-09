@@ -417,6 +417,21 @@ void printNormalWithdrawScreenHeader() {
 	cout << "-----------------------------------------\n";
 }
 
+short readWithdrawAmount(const string message) {
+	short amount;
+
+	while (true) {
+		cout << message;
+		cin >> amount;
+
+		if (cin.fail() != cin.peek() != '\n') {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		} else if (amount % 5 == 0)
+			return amount;
+	}
+}
+
 void displayNormalWithdrawScreen() {
 	system("cls");
 	printNormalWithdrawScreenHeader();
@@ -426,7 +441,7 @@ void displayNormalWithdrawScreen() {
 	short amount;
 
 	while (true) {
-		amount = readPositiveNumber("Enter amount: ");
+		amount = readWithdrawAmount("Enter amount (multiple of 5): ");
 
 		if (amount == -99)
 			break;

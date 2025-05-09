@@ -390,7 +390,7 @@ void displayQuickWithdrawScreen() {
 		userChoice = readNumberInRange("Choose an option [1] to [9]: ", 1, 9);
 
 		if (userChoice != 9) {
-			if (vClients[activeClientPosition].accountBalance >= -amounts[userChoice - 1]) {
+			if (vClients[activeClientPosition].accountBalance >= amounts[userChoice - 1]) {
 				if (readBoolean("\nAre you sure you want to perform this transaction?")) {
 					depositAmount(-amounts[userChoice - 1]);
 

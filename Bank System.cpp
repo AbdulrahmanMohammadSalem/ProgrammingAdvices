@@ -946,18 +946,29 @@ void addNewMessageToMessagesFile(const string & messageFilePath, const string & 
 		cerr << "Error: Cannot open messages file.";
 }
 
-void trimString(string & str) {
-	try {
-		//Trim left:
-		while (str.at(0) == ' ')
-			str.erase(0, 1);
+short getCharCount(const string & str, const char character) {
+	short count = 0;
 
-		//Trim right:
-		while (str.at(str.length() - 1) == ' ')
-			str.pop_back();
-	} catch (...) {
+	for (const char & C : str)
+		if (C == character)
+			count++;
+
+	return count;
+}
+
+void trimString(string & str) {
+	if (getCharCount(str, ' ') == str.length()) {
+		str = "";
 		return;
 	}
+
+	//Trim left:
+	while (str[0] == ' ')
+		str.erase(0, 1);
+
+	//Trim right:
+	while (str[str.length() - 1] == ' ')
+		str.pop_back();
 }
 
 string readMessage(const string msg) {

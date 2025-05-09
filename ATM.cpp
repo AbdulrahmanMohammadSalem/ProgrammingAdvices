@@ -417,8 +417,8 @@ void printNormalWithdrawScreenHeader() {
 	cout << "-----------------------------------------\n";
 }
 
-short readWithdrawAmount(const string message) {
-	short amount;
+int readWithdrawAmount(const string message) {
+	int amount;
 
 	while (true) {
 		cout << message;
@@ -438,7 +438,7 @@ void displayNormalWithdrawScreen() {
 
 	cout << "Your Balance is " << vClients[activeClientPosition].accountBalance << "\n\n";
 	
-	short amount;
+	int amount;
 
 	while (true) {
 		amount = readWithdrawAmount("Enter amount (multiple of 5): ");
